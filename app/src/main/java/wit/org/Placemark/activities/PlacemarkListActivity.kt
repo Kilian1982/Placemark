@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_placemark_list.*
@@ -25,13 +26,16 @@ class PlacemarkListActivity : AppCompatActivity() {
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     recyclerView.adapter = PlacemarkAdapter(app.placemarks)
+
+    toolbarMain.title = title
+    setSupportActionBar(toolbarMain)
   }
 }
 
 class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>) : RecyclerView.Adapter<PlacemarkAdapter.MainHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-    return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_placemark, parent, false))
+    return MainHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_placemark, parent, false))
   }
 
   override fun onBindViewHolder(holder: MainHolder, position: Int) {
@@ -49,3 +53,8 @@ class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>)
     }
   }
 }
+override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+  menuInflater.inflate(R.menu.menu_main, menu)
+  return super.onCreateOptionsMenu(menu)
+}
+
