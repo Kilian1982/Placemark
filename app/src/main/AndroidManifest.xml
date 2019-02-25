@@ -12,7 +12,7 @@
       android:theme="@style/AppTheme">
     <activity android:name="wit.org.Placemark.activities.MainActivity">
     </activity>
-    <activity android:name=".activities.MainActivity.PlacemarkListActivity">
+    <activity android:name="wit.org.Placemark.activities.PlacemarkListActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>

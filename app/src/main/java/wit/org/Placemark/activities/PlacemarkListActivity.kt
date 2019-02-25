@@ -1,18 +1,16 @@
-package wit.org.placemark.activities.MainActivity
+package wit.org.Placemark.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import kotlinx.android.synthetic.main.activity_placemark_list.*
 import kotlinx.android.synthetic.main.card_placemark.view.*
 import wit.org.placemark.R
 import wit.org.Placemark.main.MainApp
 import wit.org.placemark.models.PlacemarkModel
+import org.jetbrains.anko.startActivityForResult
 
 class PlacemarkListActivity : AppCompatActivity() {
 
@@ -29,6 +27,17 @@ class PlacemarkListActivity : AppCompatActivity() {
 
     toolbarMain.title = title
     setSupportActionBar(toolbarMain)
+
+  }
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.menu_main, menu)
+    return super.onCreateOptionsMenu(menu)
+  }
+  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    when (item?.itemId) {
+      R.id.item_add -> startActivityForResult<MainActivity>(0)
+    }
+    return super.onOptionsItemSelected(item)
   }
 }
 
@@ -53,8 +62,5 @@ class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>)
     }
   }
 }
-override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-  menuInflater.inflate(R.menu.menu_main, menu)
-  return super.onCreateOptionsMenu(menu)
-}
+
 

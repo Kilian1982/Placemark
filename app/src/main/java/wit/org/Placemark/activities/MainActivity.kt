@@ -12,7 +12,7 @@ import wit.org.placemark.models.PlacemarkModel
 
 class MainActivity : AppCompatActivity(), AnkoLogger{
 
-  var placemarkTitle = PlacemarkModel()
+  var placemark = PlacemarkModel()
 
   lateinit var app : MainApp
 
@@ -23,12 +23,14 @@ class MainActivity : AppCompatActivity(), AnkoLogger{
     app = application as MainApp
 
     btnAdd.setOnClickListener {
-      placemarkTitle.title = placemarkTitle.title.toString()
-      placemarkTitle.description = description.text.toString()
-      if (placemarkTitle.title.isNotEmpty()) {
-        app.placemarks.add(placemarkTitle.copy())
+      placemark.title = placemarkTitle.text.toString()
+      placemark.description = description.text.toString()
+      if (placemark.title.isNotEmpty()) {
+        app.placemarks.add(placemark.copy())
         info("add Button Pressed: $placemarkTitle")
         app.placemarks.forEach {info("add Button Pressed: ${it}")}
+        setResult(AppCompatActivity.RESULT_OK)
+        finish()
       }
       else {
         toast ("Please Enter a title")
