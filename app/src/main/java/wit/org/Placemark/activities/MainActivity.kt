@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger{
         finish()
       }
       else {
-        toast ("Please Enter a title hello world")
+        toast ("Please Enter a Title")
       }
     }
   }

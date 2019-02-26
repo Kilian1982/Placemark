@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_placemark_list.*
 import kotlinx.android.synthetic.main.card_placemark.view.*
 import wit.org.placemark.R
@@ -28,6 +29,9 @@ class PlacemarkListActivity : AppCompatActivity() {
     toolbarMain.title = title
     setSupportActionBar(toolbarMain)
 
+    toolbarAdd.title = title
+    setSupportActionBar(toolbarAdd)
+
   }
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     menuInflater.inflate(R.menu.menu_main, menu)
@@ -36,6 +40,18 @@ class PlacemarkListActivity : AppCompatActivity() {
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_add -> startActivityForResult<MainActivity>(0)
+    }
+    return super.onOptionsItemSelected(item)
+  }
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.menu_placemark, menu)
+    return super.onCreateOptionsMenu(menu)
+  }
+  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    when (item?.itemId) {
+      R.id.item_cancel -> {
+        finish()
+      }
     }
     return super.onOptionsItemSelected(item)
   }
