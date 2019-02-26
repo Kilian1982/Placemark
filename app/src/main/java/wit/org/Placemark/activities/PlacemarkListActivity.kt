@@ -29,10 +29,12 @@ class PlacemarkListActivity : AppCompatActivity() {
     toolbarMain.title = title
     setSupportActionBar(toolbarMain)
 
-    toolbarAdd.title = title
-    setSupportActionBar(toolbarAdd)
+//    toolbarAdd.title = title
+//    setSupportActionBar(toolbarAdd)
 
   }
+
+
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     menuInflater.inflate(R.menu.menu_main, menu)
     return super.onCreateOptionsMenu(menu)
@@ -40,21 +42,11 @@ class PlacemarkListActivity : AppCompatActivity() {
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_add -> startActivityForResult<MainActivity>(0)
+      R.id.item_cancel -> { finish() }
     }
     return super.onOptionsItemSelected(item)
   }
-  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-    menuInflater.inflate(R.menu.menu_placemark, menu)
-    return super.onCreateOptionsMenu(menu)
-  }
-  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-    when (item?.itemId) {
-      R.id.item_cancel -> {
-        finish()
-      }
-    }
-    return super.onOptionsItemSelected(item)
-  }
+
 }
 
 class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>) : RecyclerView.Adapter<PlacemarkAdapter.MainHolder>() {

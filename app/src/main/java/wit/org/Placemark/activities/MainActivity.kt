@@ -2,9 +2,13 @@ package wit.org.Placemark.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_placemark_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import wit.org.Placemark.main.MainApp
 import wit.org.placemark.R
@@ -20,6 +24,8 @@ class MainActivity : AppCompatActivity(), AnkoLogger{
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
     info("MainActivity Started")
+    toolbarAdd.title = title
+    setSupportActionBar(toolbarAdd)
     app = application as MainApp
 
     btnAdd.setOnClickListener {
@@ -37,4 +43,15 @@ class MainActivity : AppCompatActivity(), AnkoLogger{
       }
     }
   }
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.menu_placemark, menu)
+    return super.onCreateOptionsMenu(menu)
+  }
+  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    when (item?.itemId) {
+      R.id.item_cancel -> { finish() }
+    }
+    return super.onOptionsItemSelected(item)
+  }
+
 }
