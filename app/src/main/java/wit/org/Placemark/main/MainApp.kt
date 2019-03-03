@@ -3,10 +3,11 @@ package wit.org.Placemark.main
 import android.app.Application
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import wit.org.placemark.models.PlacemarkMemStore
 import wit.org.placemark.models.PlacemarkModel
 
 class MainApp : Application(), AnkoLogger {
-  val placemarks = ArrayList<PlacemarkModel>()
+  val placemarks = PlacemarkMemStore()
   override fun onCreate() {
     super.onCreate()
     info("Placemark started")

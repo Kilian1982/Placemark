@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_placemark_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import wit.org.Placemark.main.MainApp
 import wit.org.placemark.R
@@ -28,13 +26,19 @@ class MainActivity : AppCompatActivity(), AnkoLogger{
     setSupportActionBar(toolbarAdd)
     app = application as MainApp
 
+    if (intent.hasExtra("placemark_edit")) {
+      placemark = intent.extras.getParcelable<PlacemarkModel>("placemark_edit")
+      placemarkTitle.setText(placemark.title)
+      description.setText(placemark.description)
+    }
+
     btnAdd.setOnClickListener {
       placemark.title = placemarkTitle.text.toString()
       placemark.description = description.text.toString()
       if (placemark.title.isNotEmpty()) {
-        app.placemarks.add(placemark.copy())
+        app.placemarks.create(placemark.copy())
         info("add Button Pressed: $placemarkTitle")
-        app.placemarks.forEach {info("add Button Pressed: ${it}")}
+
         setResult(AppCompatActivity.RESULT_OK)
         finish()
       }
