@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_placemark.view.*
+import wit.org.Placemark.helpers.readImageFromPath
 import wit.org.placemark.R
 import wit.org.placemark.models.PlacemarkModel
 
@@ -16,7 +17,7 @@ class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>,
                                    private val listener: PlacemarkListener) : RecyclerView.Adapter<PlacemarkAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_placemark, parent, false))
+        return MainHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_placemark, parent, false))
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
@@ -31,6 +32,7 @@ class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>,
         fun bind(placemark: PlacemarkModel,  listener : PlacemarkListener) {
             itemView.placemarkTitle.text = placemark.title
             itemView.description.text = placemark.description
+            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, placemark.image))
             itemView.setOnClickListener { listener.onPlacemarkClick(placemark) }
         }
     }
